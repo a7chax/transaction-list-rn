@@ -1,3 +1,4 @@
 #react-native-new-arch
 
-![record.mov](record.mov)
+Preview App :
+https://youtube.com/shorts/CSI3XVIT7sM?feature=share
