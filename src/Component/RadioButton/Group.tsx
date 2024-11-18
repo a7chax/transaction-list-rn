@@ -13,7 +13,7 @@ interface RadioButtonGroupProps {
   onSelectionChange: (value: IRadioOption) => void;
 }
 
-export  function RadioButtonGroup({
+function RadioButtonGroup({
   options,
   onSelectionChange,
   selectedValue,
@@ -40,7 +40,7 @@ export  function RadioButtonGroup({
 }
 
 const memoizedRadioButtonGroup = React.memo(RadioButtonGroup);
-export default memoizedRadioButtonGroup;
+export { memoizedRadioButtonGroup as RadioButtonGroup };
 
 const styles = StyleSheet.create({
   container: {

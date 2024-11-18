@@ -11,7 +11,7 @@ interface SearchBarProps {
   onPressFilter: () => void;
 }
 
-export const SearchBar : React.FC<SearchBarProps> = ({keyword,setkeyword, onPressFilter, selectedFilter}) => {
+const SearchBar : React.FC<SearchBarProps> = ({keyword,setkeyword, onPressFilter, selectedFilter}) => {
   return (
     <View style={styles.containerSearchbar}>
         <IconSearch/>
@@ -23,6 +23,9 @@ export const SearchBar : React.FC<SearchBarProps> = ({keyword,setkeyword, onPres
     </View>
   );
 };
+
+const memoizedSearchBar = React.memo(SearchBar);
+export { memoizedSearchBar as SearchBar };
 
 const styles = StyleSheet.create({
   containerTextInput : {
