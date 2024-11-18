@@ -1,0 +1,5 @@
+export const COLOR = {
+    STATUS_INDICATOR_PENDING : '#F36A3F',
+    STATUS_INDICATOR_SUCCESS : '#67AE8C',
+    PRIMARY : '#F36A3F',
+};
