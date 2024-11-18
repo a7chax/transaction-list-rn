@@ -4,7 +4,7 @@ import {  IFilterTransaction, ITransaction } from '@ModuleTransaction/domain/ent
 
 import { TransactionModuleStackParamList, useTransactionNavigation } from '@ModuleTransaction/router';
 import { StackNavigationProp } from '@react-navigation/stack';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { BaseResponse } from '@core/BaseResponse';
 import { IRadioOption } from '@component/RadioButton/Group';
 import { useDebounce } from '@core/utility';
@@ -38,25 +38,25 @@ export const useListTransaction = () : IUseListTransaction => {
         keyword: debouncedSearchTerm,
     });
     const navigation : StackNavigationProp<TransactionModuleStackParamList> = useTransactionNavigation();
-
+    console.log('queryListTransaction', queryListTransaction);
     const goToDetail = (transaction: ITransaction) => {
         navigation.navigate('DetailTransaction', { transaction });
     };
 
-    const onChangeKeyword = (text: string) => {
+    const onChangeKeyword = useCallback((text: string) => {
         setKeyword(text);
-    };
+    }, [setKeyword]);
 
-    const onSelectFilter = (_filter : IRadioOption) => {
-        setFilter({
-            ...filter,
+    const onSelectFilter = useCallback((_filter: IRadioOption) => {
+        setFilter((prevFilter) => ({
+            ...prevFilter,
             sortBy: {
                 label: _filter.label,
                 value: _filter.value,
             },
-        });
+        }));
         setShowModalFilter(false);
-    };
+    }, [setShowModalFilter, setFilter]);
 
     const onPressFilter = (visble : boolean) => {
         setShowModalFilter(visble);
