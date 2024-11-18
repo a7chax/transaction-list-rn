@@ -1,0 +1,3 @@
+export enum LOCAL_STORAGE {
+    DATA_TRANSACTION = 'DATA_TRANSACTION',
+}
