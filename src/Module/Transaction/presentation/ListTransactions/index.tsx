@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { FlatList, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useListTransaction } from './useListTransaction';
 import { ModalFilterTransaction } from '@ModuleTransaction/Component/ModalFilterTransaction';
@@ -31,19 +31,19 @@ export const ListTransactionsScreen = () => {
                 isVisible={showModalFilter}
                 selectFilter={onSelectFilter}
                 selectedFilter={filter.sortBy}
-                onDismiss={() => onPressFilter(false)}
+                onDismiss={useCallback(() => onPressFilter(false), [onPressFilter])}
             />
             <FlatList
                 data={queryListTransaction.data?.data}
                 keyExtractor={(item) => item.id}
                 scrollEnabled={false}
-                renderItem={({item} : {item : ITransaction}) => (
+                renderItem={useCallback(({item} : {item : ITransaction}) => (
                     <CardTransaction
                        {...item}
                         onPress={() => goToDetail(item)}
                     />
-                )}
-                ItemSeparatorComponent={ItemSeparator}
+                ), [goToDetail])}
+                ItemSeparatorComponent={useCallback(ItemSeparator, [])}
                 ListEmptyComponent={<Text>{queryListTransaction.data?.message}</Text>}
                 contentContainerStyle={styles.containerListTransactions}
                 numColumns={1}

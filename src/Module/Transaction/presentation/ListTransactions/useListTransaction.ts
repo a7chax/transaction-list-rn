@@ -38,7 +38,6 @@ export const useListTransaction = () : IUseListTransaction => {
         keyword: debouncedSearchTerm,
     });
     const navigation : StackNavigationProp<TransactionModuleStackParamList> = useTransactionNavigation();
-    console.log('queryListTransaction', queryListTransaction);
     const goToDetail = (transaction: ITransaction) => {
         navigation.navigate('DetailTransaction', { transaction });
     };
